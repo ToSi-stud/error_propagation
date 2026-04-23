@@ -30,8 +30,8 @@ The script uses the **Taylor series expansion method** (first-order approximatio
 
 ## Usage
 
-1. Define your measured values and their uncertainties
-2. Specify the formula or mathematical operation
+1. Define your measured values
+2. Specify the formula or mathematical operation in the given function
 3. Run the script to calculate the resulting uncertainty
 4. Review the computed results and propagated error
 
@@ -53,4 +53,4 @@ c:\Users\simon\PythonProject\Fehlerfortpflanzunh\
 
 ## License
 
-This project is part of educational coursework.
+This project is free to use, but take care, everything is WIP.

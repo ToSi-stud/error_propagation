@@ -39,6 +39,23 @@ def fehlerfortpflanzung(datasets):
     quad_Korrelationskoeffizient_den = (quad_avgs[0] - avgs[0] ** 2) * (quad_avgs[1] - avgs[1] ** 2)
     quad_Korrelationskoeffizient = quad_Korrelationskoeffizient_nom / quad_Korrelationskoeffizient_den
     
+    # optional output may remove wenn lust wa
+    richtmoment = 4 * math.pi**2 / steigung
+    delta_richtmoment = math.sqrt((4 * math.pi**2 / steigung**2 * delta_steigung) ** 2)
+    j_tisch = y_Achsenabschnitt * richtmoment/ (4 * math.pi**2)
+    
+    delta_j_tisch_1 = (richtmoment / (4 * math.pi**2) * delta_y_Achsenabschnitt)**2
+    delta_j_tisch_2 = (y_Achsenabschnitt * delta_richtmoment / (4 * math.pi**2))**2
+    delta_j_tisch = math.sqrt(delta_j_tisch_1 + delta_j_tisch_2)
+
+    js_inhomogen_1 = y_Achsenabschnitt * richtmoment/ (4 * math.pi**2) - j_tisch
+
+    delta_js_inhomogen_1 = richtmoment / (4 * math.pi**2) * delta_y_Achsenabschnitt
+    delta_js_inhomogen_2 = y_Achsenabschnitt * delta_richtmoment / (4 * math.pi**2)
+    delta_js_inhomogen = math.sqrt(delta_js_inhomogen_1 ** 2 + delta_js_inhomogen_2 ** 2 + delta_j_tisch ** 2)
+
+
+
     u,i = sp.symbols('u i')
     wiederstand_fromel = u / i
     partielle_ableitung_wiederstand_u = sp.diff(wiederstand_fromel, u)
@@ -58,4 +75,10 @@ def fehlerfortpflanzung(datasets):
             'deltax': deltax,
             'standartabweichungen': standartabweichungen,
             'avgs': avgs,
+            'richtmoment': richtmoment,
+            'delta_richtmoment': delta_richtmoment,
+            'j_tisch': j_tisch,
+            'delta_j_tisch': delta_j_tisch,
+            'js_inhomogen': js_inhomogen_1,
+            'delta_js_inhomogen': delta_js_inhomogen
             }
